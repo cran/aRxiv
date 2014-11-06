@@ -16,16 +16,20 @@ The [aRxiv](http://github.com/ropensci/aRxiv) package is in early development.
 
 ### Installation
 
-The package is not currently available on
-[CRAN](http://cran.r-project.org). To install, use
-`devtools::install_github()`, as follows:
+You can install the package via [CRAN](http://cran.r-project.org):
+
+```r
+install.packages("aRxiv")
+```
+
+Or use `devtools::install_github()` to get the (more recent) version
+at [GitHub](https://github.com/rOpenSci/aRxiv):
 
 ```r
 install.packages("devtools")
 library(devtools)
 install_github("ropensci/aRxiv")
 ```
-
 
 ### Basic usage
 
@@ -40,7 +44,9 @@ str(z)
 
 ### Tutorial
 
-To view the tutorial for the aRxiv package:
+An aRxiv tutorial is available at the rOpenSci website, [here](http://ropensci.org/tutorials/arxiv_tutorial.html).
+
+To view the tutorial from R, use:
 
 ```r
 vignette("aRxiv", "aRxiv")
@@ -59,7 +65,7 @@ vignette("aRxiv", "aRxiv")
 
 ### License
 
-Licensed under the [MIT license](LICENSE). ([More information here](http://en.wikipedia.org/wiki/MIT_License).)
+Licensed under the [MIT license](http://cran.r-project.org/web/licenses/MIT). ([More information here](http://en.wikipedia.org/wiki/MIT_License).)
 
 ---
 

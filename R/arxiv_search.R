@@ -1,4 +1,3 @@
-
 # This is the template for the search API methods for arXiv
 # User manual: http://arxiv.org/help/api/user-manual
 # A simple search: http://arxiv.org/help/api/user-manual
@@ -9,7 +8,7 @@
 #' Allows for progammatic searching of the arXiv pre-print repository.
 #'
 #' @param query Search pattern as a string; a vector of such strings
-#' are combined with \code{AND}
+#' also allowed, in which case the elements are combined with \code{AND}.
 #' @param id_list arXiv doc IDs, as comma-delimited string or a vector
 #' of such strings
 #' @param start An offset for the start of search
@@ -37,8 +36,8 @@
 #' The data frame format has the following columns.
 #' \tabular{rll}{
 #'  [,1] \tab id               \tab arXiv ID \cr
-#'  [,3] \tab submitted        \tab date first submitted \cr
-#'  [,2] \tab updated          \tab date last updated \cr
+#'  [,2] \tab submitted        \tab date first submitted \cr
+#'  [,3] \tab updated          \tab date last updated \cr
 #'  [,4] \tab title            \tab manuscript title \cr
 #'  [,5] \tab summary          \tab abstract \cr
 #'  [,6] \tab authors          \tab author names \cr
@@ -50,7 +49,7 @@
 #' [,12] \tab journal_ref      \tab journal reference \cr
 #' [,13] \tab doi              \tab published DOI \cr
 #' [,14] \tab primary_category \tab primary category \cr
-#' [,14] \tab categories       \tab all categories \cr
+#' [,15] \tab categories       \tab all categories \cr
 #' }
 #'
 #' The contents are all strings; missing values are empty strings (\code{""}).
@@ -64,6 +63,9 @@
 #' the time at which it was completed. Another attribute
 #' \code{"total_results"} is the total number of records that match
 #' the query.
+#'
+#' @seealso \code{\link{arxiv_count}}, \code{\link{arxiv_open}},
+#' \code{\link{query_terms}}, \code{\link{arxiv_cats}}
 #'
 #' @examples
 #' \dontshow{old_delay <- getOption("aRxiv_delay")
@@ -180,10 +182,19 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
 
     starts <- seq(start, start+limit-1, by=batchsize)
 
+    # maximum record to return
+    max_record <- start + limit - 1
+
     for(i in seq(along=starts)) {
 
+        # avoid returning more than a total of limit records
+        this_limit <- ifelse(max_record - starts[i] + 1 < batchsize,
+                             max_record - starts[i] + 1,
+                             batchsize)
+        if(this_limit == 0) break
+
         these_results <- arxiv_search(query=query, id_list=id_list,
-                                      start=starts[i], limit=batchsize,
+                                      start=starts[i], limit=this_limit,
                                       sort_by=sort_by, ascending=ascending,
                                       batchsize=batchsize, force=force,
                                       output_format="list", sep=sep)

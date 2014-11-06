@@ -18,10 +18,16 @@ Note that the arXiv API _does not_ require an API key.
 
 ## Installation
 
-The [aRxiv package](https://github.com/ropensci/aRxiv) is not
-currently available on [CRAN](http://cran.r-project.org). To install the
-package from [GitHub](http://github.com), use
-`devtools::install_github()`, as follows:
+You can install the [aRxiv package](https://github.com/rOpenSci/aRxiv)
+via [CRAN](http://cran.r-project.org):
+
+
+```r
+install.packages("aRxiv")
+```
+
+Or use `devtools::install_github()` to get the (more recent) version
+at [GitHub](https://github.com/rOpenSci/aRxiv):
 
 
 ```r
@@ -209,7 +215,7 @@ arxiv_count('au:Peter au:Hall')
 ```
 
 ```
-## [1] 14435
+## [1] 14595
 ```
 
 ```r
@@ -217,7 +223,7 @@ arxiv_count('au:Peter OR au:Hall')
 ```
 
 ```
-## [1] 14435
+## [1] 14595
 ```
 
 ```r
@@ -225,7 +231,7 @@ arxiv_count('au:Peter AND au:Hall')
 ```
 
 ```
-## [1] 69
+## [1] 70
 ```
 
 ```r
@@ -233,7 +239,7 @@ arxiv_count('au:Hall ANDNOT au:Peter')
 ```
 
 ```
-## [1] 1248
+## [1] 1259
 ```
 
 It appears that in the author field (and many other fields) you must
@@ -253,7 +259,7 @@ arxiv_count('au:P AND au:Hall')
 ```
 
 ```
-## [1] 538
+## [1] 548
 ```
 
 ```r
@@ -302,7 +308,7 @@ arxiv_count('cat:stat.AP')
 ```
 
 ```
-## [1] 3160
+## [1] 3216
 ```
 
 ```r
@@ -310,7 +316,7 @@ arxiv_count('cat:stat*')
 ```
 
 ```
-## [1] 16733
+## [1] 17074
 ```
 
 ### Dates and ranges of dates
@@ -410,7 +416,7 @@ arxiv_count("14J60")
 ```
 
 ```
-## [1] 353
+## [1] 359
 ```
 
 
@@ -490,7 +496,7 @@ package). You may be locked out from the arXiv API.
 
 ### Limit number of items returned
 
-The arXiv API will returns only complete records (including the entire
+The arXiv API returns only complete records (including the entire
 abstracts); searches returning large numbers of records can be very
 slow.
 

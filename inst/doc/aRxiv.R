@@ -1,6 +1,9 @@
 ## ----change_aRxiv_delay_option, include=FALSE----------------------------
 options(aRxiv_delay=0.5)
 
+## ----install_from_cran, eval=FALSE---------------------------------------
+#  install.packages("aRxiv")
+
 ## ----install_pkgs, eval=FALSE--------------------------------------------
 #  install.packages("devtools")
 #  library(devtools)
