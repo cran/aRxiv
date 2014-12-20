@@ -20,15 +20,17 @@
 #' @examples
 #' \dontshow{old_delay <- getOption("aRxiv_delay")
 #'           options(aRxiv_delay=1)}
+#' \donttest{
 #' # count papers in category stat.AP (applied statistics)
 #' arxiv_count(query = "cat:stat.AP")
 #'
 #' # count papers by Peter Hall in any stat category
-#' \donttest{arxiv_count(query = 'au:"Peter Hall" AND cat:stat*')}
+#' arxiv_count(query = 'au:"Peter Hall" AND cat:stat*')
 #'
 #' # count papers for a range of dates
 #' #    here, everything in 2013
-#' \donttest{arxiv_count("submittedDate:[2013 TO 2014]")}
+#' arxiv_count("submittedDate:[2013 TO 2014]")
+#' }
 #' \dontshow{options(aRxiv_delay=old_delay)}
 arxiv_count <-
 function(query=NULL, id_list=NULL)
@@ -38,11 +40,19 @@ function(query=NULL, id_list=NULL)
     query <- paste_query(query)
     id_list <- paste_id_list(id_list)
 
-    # do search
     delay_if_necessary()
-    search_result <- httr::POST(query_url,
-                                body=list(search_query=query, id_list=id_list,
-                                          start=0, max_results=0))
+    # do search
+    # (extra messy to avoid possible problems when testing on CRAN
+    #    timeout_action defined in timeout.R)
+    search_result <- try(httr::POST(query_url,
+                                    body=list(search_query=query, id_list=id_list,
+                                              start=0, max_gresults=0),
+                                    httr::timeout(get_arxiv_timeout())))
+    if(class(search_result) == "try-error") {
+        timeout_action()
+        return(invisible(NULL))
+    }
+
     set_arxiv_time() # set time for last call to arXiv
 
     # convert XML results to a list

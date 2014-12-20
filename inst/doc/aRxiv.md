@@ -16,6 +16,8 @@ Note that the arXiv API _does not_ require an API key.
 
 
 
+
+
 ## Installation
 
 You can install the [aRxiv package](https://github.com/rOpenSci/aRxiv)
@@ -60,7 +62,7 @@ arxiv_count('au:"Peter Hall"')
 ```
 
 ```
-## [1] 50
+## [1] 51
 ```
 
 The `au:` part indicates to search the author field; we use double
@@ -93,10 +95,10 @@ attr(rec, "total_results")
 ```
 
 ```
-## [1] 50
+## [1] 51
 ```
 
-The following will get us all 50
+The following will get us all 51
 records.
 
 
@@ -215,7 +217,7 @@ arxiv_count('au:Peter au:Hall')
 ```
 
 ```
-## [1] 14595
+## [1] 14883
 ```
 
 ```r
@@ -223,7 +225,7 @@ arxiv_count('au:Peter OR au:Hall')
 ```
 
 ```
-## [1] 14595
+## [1] 14883
 ```
 
 ```r
@@ -231,7 +233,7 @@ arxiv_count('au:Peter AND au:Hall')
 ```
 
 ```
-## [1] 70
+## [1] 72
 ```
 
 ```r
@@ -239,7 +241,7 @@ arxiv_count('au:Hall ANDNOT au:Peter')
 ```
 
 ```
-## [1] 1259
+## [1] 1294
 ```
 
 It appears that in the author field (and many other fields) you must
@@ -259,7 +261,7 @@ arxiv_count('au:P AND au:Hall')
 ```
 
 ```
-## [1] 548
+## [1] 568
 ```
 
 ```r
@@ -308,7 +310,7 @@ arxiv_count('cat:stat.AP')
 ```
 
 ```
-## [1] 3216
+## [1] 3367
 ```
 
 ```r
@@ -316,7 +318,7 @@ arxiv_count('cat:stat*')
 ```
 
 ```
-## [1] 17074
+## [1] 17901
 ```
 
 ### Dates and ranges of dates
@@ -416,7 +418,7 @@ arxiv_count("14J60")
 ```
 
 ```
-## [1] 359
+## [1] 367
 ```
 
 
@@ -539,6 +541,7 @@ are combined.
   [MIT](https://github.com/ropensci/aRxiv/blob/master/LICENSE)
 - Report bugs or suggestions improvements by [submitting an issue](https://github.com/ropensci/aRxiv/issues) to
   [our GitHub repository for aRxiv](https://github.com/ropensci/aRxiv).
+
 
 
 

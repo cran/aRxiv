@@ -1,3 +1,11 @@
+## ----be_graceful_on_cran, include=FALSE----------------------------------
+# if on cran, avoid errors when connection problems
+on_cran <- Sys.getenv("NOT_CRAN")!="true"
+if(on_cran) {
+    aRxiv:::set_arxiv_timeout(1)
+    aRxiv:::set_message_on_timeout(TRUE)
+}
+
 ## ----change_aRxiv_delay_option, include=FALSE----------------------------
 options(aRxiv_delay=0.5)
 
@@ -80,4 +88,10 @@ res$updated
 
 ## ----aRxiv_delay, eval=FALSE---------------------------------------------
 #  options(aRxiv_delay=1)
+
+## ----reset_to_defaults, include=FALSE------------------------------------
+if(on_cran) {
+    aRxiv:::set_arxiv_timeout(30)
+    aRxiv:::set_message_on_timeout(FALSE)
+}
 

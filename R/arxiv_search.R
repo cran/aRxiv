@@ -70,20 +70,22 @@
 #' @examples
 #' \dontshow{old_delay <- getOption("aRxiv_delay")
 #'           options(aRxiv_delay=1)}
+#' \donttest{
 #' # search for author Peter Hall with deconvolution in title
 #' z <- arxiv_search(query = 'au:"Peter Hall" AND ti:deconvolution', limit=2)
 #' attr(z, "total_results") # total no. records matching query
 #' z$title
 #'
 #' # search for a set of documents by arxiv identifiers
-#' \donttest{z <- arxiv_search(id_list = c("0710.3491v1", "0804.0713v1", "1003.0315v1"))}
+#' z <- arxiv_search(id_list = c("0710.3491v1", "0804.0713v1", "1003.0315v1"))
 #' # can also use a comma-separated string
-#' \donttest{z <- arxiv_search(id_list = "0710.3491v1,0804.0713v1,1003.0315v1")}
+#' z <- arxiv_search(id_list = "0710.3491v1,0804.0713v1,1003.0315v1")
 #' # Journal references, if available
 #' z$journal_ref
 #'
 #' # search for a range of dates (in this case, one day)
-#' \donttest{z <- arxiv_search("submittedDate:[199701010000 TO 199701012400]", limit=2)}
+#' z <- arxiv_search("submittedDate:[199701010000 TO 199701012400]", limit=2)
+#' }
 #' \dontshow{options(aRxiv_delay=old_delay)}
 arxiv_search <-
 function(query=NULL, id_list=NULL, start=0, limit=10,
@@ -101,7 +103,7 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
     output_format <- match.arg(output_format)
 
     if(is.null(start)) start <- 0
-    if(is.null(limit)) limit <- arxiv_count(query, list)
+    if(is.null(limit)) limit <- arxiv_count(query, id_list)
 
     stopifnot(start >= 0)
     stopifnot(limit >= 0)
@@ -126,12 +128,20 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
                                       output_format=output_format, sep=sep))
     }
 
-    # do search
     delay_if_necessary()
-    search_result <- httr::POST(query_url,
-                                body=list(search_query=query, id_list=id_list,
-                                          start=start, max_results=limit,
-                                          sortBy=recode_sortby(sort_by), sortOrder=sort_order))
+    # do search
+    # (extra messy to avoid possible problems when testing on CRAN
+    #    timeout_action defined in timeout.R)
+    search_result <- try(httr::POST(query_url,
+                                    body=list(search_query=query, id_list=id_list,
+                                              start=start, max_results=limit,
+                                              sortBy=recode_sortby(sort_by), sortOrder=sort_order),
+                                    httr::timeout(get_arxiv_timeout())))
+    if(class(search_result) == "try-error") {
+        timeout_action()
+        return(invisible(NULL))
+    }
+
     set_arxiv_time() # set time for last call to arXiv
 
     # convert XML results to a list
