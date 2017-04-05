@@ -8,8 +8,6 @@
 #' @param id_list arXiv doc IDs, as comma-delimited string or a vector
 #' of such strings
 #'
-#' @export
-#'
 #' @return Number of results (integer). An attribute
 #' \code{"search_info"} contains information about the search
 #' parameters and the time at which it was performed.
@@ -32,6 +30,8 @@
 #' arxiv_count("submittedDate:[2013 TO 2014]")
 #' }
 #' \dontshow{options(aRxiv_delay=old_delay)}
+#'
+#' @export
 arxiv_count <-
 function(query=NULL, id_list=NULL)
 {
@@ -60,17 +60,22 @@ function(query=NULL, id_list=NULL)
     # convert XML results to a list
     listresult <- result2list(search_result)
 
-    # check for arXiv error
-    error_message <- arxiv_error_message(listresult)
-    if(!is.null(error_message)) {
-        stop("arXiv error: ", error_message)
+    # handle null return
+    if(is.null(listresult)) result <- 0
+    else {
+
+        # check for arXiv error
+        error_message <- arxiv_error_message(listresult)
+        if(!is.null(error_message)) {
+            stop("arXiv error: ", error_message)
+        }
+
+        # check for general http error
+        httr::stop_for_status(search_result)
+
+        # return totalResults
+        result <- as.integer(listresult$totalResults)
     }
-
-    # check for general http error
-    httr::stop_for_status(search_result)
-
-    # return totalResults
-    result <- as.integer(listresult$totalResults)
 
     attr(result, "search_info") <-
         search_attributes(query, id_list, NULL, NULL, NULL, NULL)
