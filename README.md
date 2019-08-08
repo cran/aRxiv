@@ -1,7 +1,7 @@
-[![Travis build status](https://travis-ci.org/ropensci/aRxiv.png?branch=master)](https://travis-ci.org/ropensci/aRxiv)
-[![Appveyor build status](https://ci.appveyor.com/api/projects/status/kkqyqak224a98jlh)](https://ci.appveyor.com/project/karthik/arxiv)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/aRxiv)](https://cran.r-project.org/package=aRxiv)
-[![codecov.io](https://codecov.io/github/ropensci/aRxiv/coverage.svg?branch=master)](https://codecov.io/github/ropensci/aRxiv?branch=master)
+# aRxiv
+
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![CRAN/GitHub 0.5.19 / 0.5.19](https://img.shields.io/badge/CRAN/GitHub-0.5.19%20/%200.5.19-blue.svg)](https://cran.r-project.org/package=aRxiv)
 
 ## R interface to arXiv
 
@@ -14,13 +14,23 @@ the [arXiv API](https://arxiv.org/help/api/index).
 Note that the arXiv API _does not_ require an API key.
 
 
-### Installation
+## Package Status and Installation
+
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/aRxiv?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/aRxiv)
+[![Travis-CI Build Status](https://travis-ci.org/ropensci/aRxiv.svg?branch=master)](https://travis-ci.org/)
+[![codecov](https://codecov.io/gh/ropensci/aRxiv/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/aRxiv)
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/aRxiv?color=blue)](https://github.com/metacran/cranlogs.app)
+
+__Installation instructions__
+__Stable Version__
 
 You can install the package via [CRAN](https://cran.r-project.org):
 
 ```r
 install.packages("aRxiv")
 ```
+
+__Development Version__
 
 Or use `devtools::install_github()` to get the (more recent) version
 at [GitHub](https://github.com/rOpenSci/aRxiv):
@@ -31,6 +41,7 @@ library(devtools)
 install_github("ropensci/aRxiv")
 ```
 
+## Usage
 ### Basic usage
 
 The main function is `arxiv_search()`. Here's an example of its use:
@@ -72,5 +83,16 @@ Licensed under the [MIT license](https://cran.r-project.org/web/licenses/MIT). (
 This package is part of a richer suite called [fulltext](https://github.com/ropensci/fulltext), along with several other packages, that provides the ability to search for and retrieve full text of open access scholarly articles. We recommend using `fulltext` as the primary R interface to `arXiv` unless your needs are limited to this single source.
 
 ---
+
+## Citation
+
+Get citation information for `aRxiv` in R by running: `citation(package = 'aRxiv')`
+
+## Code of Conduct
+
+Please note that this project is released with a [Contributor Code of Conduct](https://github.com/ropensci/aRxiv/blob/master/CONDUCT.md).
+By participating in this project you agree to abide by its terms.
+
+
 
 [![ropensci footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

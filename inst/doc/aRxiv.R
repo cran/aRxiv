@@ -28,8 +28,8 @@ nrow(rec)
 ## ----arxiv_search_attr---------------------------------------------------
 attr(rec, "total_results")
 
-## ----arxiv_search_limit50------------------------------------------------
-rec <- arxiv_search('au:"Peter Hall"', limit=50)
+## ----arxiv_search_limit100-----------------------------------------------
+rec <- arxiv_search('au:"Peter Hall"', limit=100)
 nrow(rec)
 
 ## ----arxiv_search_deconvolution------------------------------------------
@@ -74,7 +74,7 @@ arxiv_count('submittedDate:2007*')
 arxiv_count('submittedDate:[2007 TO 2008]')
 
 ## ----arxiv_search_result-------------------------------------------------
-res <- arxiv_search('au:"Terry Speed"')
+res <- arxiv_search('au:"Peter Hall"')
 names(res)
 
 ## ----search_msc----------------------------------------------------------
@@ -82,8 +82,8 @@ arxiv_count("cat:14J60")
 arxiv_count("14J60")
 
 ## ----sortby_example------------------------------------------------------
-res <- arxiv_search('au:"Terry Speed"', sort_by="updated",
-                    ascending=FALSE)
+res <- arxiv_search('au:"Peter Hall" AND ti:deconvolution',
+                    sort_by="updated", ascending=FALSE)
 res$updated
 
 ## ----aRxiv_delay, eval=FALSE---------------------------------------------
