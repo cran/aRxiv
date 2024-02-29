@@ -13,8 +13,8 @@ options(aRxiv_delay=0.5)
 #  install.packages("aRxiv")
 
 ## ----install_pkgs, eval=FALSE-------------------------------------------------
-#  install.packages("devtools")
-#  library(devtools)
+#  install.packages("remotes")
+#  library(remotes)
 #  install_github("ropensci/aRxiv")
 
 ## ----arxiv_count--------------------------------------------------------------
@@ -56,8 +56,11 @@ arxiv_count('au:P* AND au:Hall')
 arxiv_count('au:P AND au:Hall')
 arxiv_count('au:"P Hall"')
 
+## ----arxiv_cats_colnames------------------------------------------------------
+colnames(arxiv_cats)
+
 ## ----arxiv_cats---------------------------------------------------------------
-arxiv_cats[grep('^stat', arxiv_cats$abbreviation),]
+arxiv_cats[arxiv_cats$field=="Statistics", c("category", "short_description")]
 
 ## ----search_cats--------------------------------------------------------------
 arxiv_count('cat:stat')

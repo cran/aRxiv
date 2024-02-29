@@ -1,3 +1,12 @@
+aRxiv 0.10
+----------
+
+### BUG FIXES
+
+* Small revision to aRxiv vignette to deal with the change in the
+  structure of the `arxiv_cats` dataset.
+
+
 aRxiv 0.8
 ---------
 

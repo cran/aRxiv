@@ -1,7 +1,7 @@
-d5c54a23a32709cccaef9a6881d2188f *DESCRIPTION
-325fd7b09f9363229679e0e50a4a7b16 *LICENSE
+8b5c524a8151f3290719eb961b5e3b6a *DESCRIPTION
+f324a00751ac078d5bf62a03577e2f44 *LICENSE
 3acc32834b882cdaf740fb1b854a87aa *NAMESPACE
-d599f04867161724fa3187bde80afaa9 *NEWS.md
+10bc13016757803868982d3d8ca1a746 *NEWS.md
 2a710aa71be9b6da167d4fe04e1dd1e0 *R/arxiv_cats-data.R
 e04acd300a4dbf07e886de89d8535f77 *R/arxiv_count.R
 c1e11822e796d593a5731afbd44ee8df *R/arxiv_open.R
@@ -16,13 +16,13 @@ cc81cda50773af7a860b09b04dfc9f7c *R/parse.R
 c9e7eff32f870517a837a8d2042b2469 *R/query_util.R
 3795651840e1d8f982fba16bfe7df80e *R/time.R
 58c7d027ebd301d79cae9045495d5fb7 *R/timeout.R
-e000f2a3c6fc411550cfca081b7e6869 *README.md
+dfaca09815f5ede9c9777aead054b964 *README.md
 c5cd2be6e73bbd861d017995e01a9c75 *build/vignette.rds
 ea1d47d00cc1269a0fb8d19360635e67 *data/arxiv_cats.RData
 0ea7d9658c1818da3eb557642c42b03e *data/query_terms.RData
-f9c0f84737c74957b728291ffbc99f4b *inst/doc/aRxiv.R
-bf937a072e1a907106344c3cf1e37c39 *inst/doc/aRxiv.Rmd
-30293b63fc91105cef3308d33c6d0940 *inst/doc/aRxiv.html
+db7b4d7e6b9e38733b6b9081aa47c69b *inst/doc/aRxiv.R
+612f453ca606f012441f2bc9e97a6bb9 *inst/doc/aRxiv.Rmd
+9afde8c876d25b52fe7f5c868332e4cd *inst/doc/aRxiv.html
 0f18cceddb61a1e6f44afd69aac75972 *inst/scripts/README.md
 ad8d820150ebfc7b42e8754f5ba63968 *inst/scripts/grab_arxiv_cats.R
 254005702ee460411b244e865769c1a0 *inst/scripts/grab_query_terms.R
@@ -40,4 +40,4 @@ c6e4d1e4effd43b0b0204338087d692d *tests/testthat/test-date_range.R
 00ef6d5af95eaecb38b686ceb19aa20e *tests/testthat/test-search.R
 9d449b44402d985edfd5e06140c33f5c *tests/testthat/test-sort.R
 1a906862200d87f5f0163bcab286498e *tests/testthat/test-toomany.R
-bf937a072e1a907106344c3cf1e37c39 *vignettes/aRxiv.Rmd
+612f453ca606f012441f2bc9e97a6bb9 *vignettes/aRxiv.Rmd
