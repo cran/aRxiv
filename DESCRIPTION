@@ -1,7 +1,7 @@
 Package: aRxiv
 Title: Interface to the arXiv API
-Version: 0.10
-Date: 2024-02-29
+Version: 0.12
+Date: 2025-07-29
 Authors@R: c(person("Karthik", "Ram", role="aut",
     email="karthik.ram@gmail.com", comment=c(ORCID = "0000-0002-0233-1757")),
     person("Karl", "Broman", role=c("aut","cre"),
@@ -20,11 +20,11 @@ Suggests: devtools, knitr, rmarkdown, roxygen2, testthat
 VignetteBuilder: knitr
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 NeedsCompilation: no
-Packaged: 2024-02-29 16:57:24 UTC; kbroman
-Author: Karthik Ram [aut] (<https://orcid.org/0000-0002-0233-1757>),
-  Karl Broman [aut, cre] (<https://orcid.org/0000-0002-4914-6671>)
+Packaged: 2025-07-29 14:37:34 UTC; kbroman
+Author: Karthik Ram [aut] (ORCID: <https://orcid.org/0000-0002-0233-1757>),
+  Karl Broman [aut, cre] (ORCID: <https://orcid.org/0000-0002-4914-6671>)
 Maintainer: Karl Broman <broman@wisc.edu>
 Repository: CRAN
-Date/Publication: 2024-02-29 17:12:37 UTC
+Date/Publication: 2025-07-29 15:20:09 UTC

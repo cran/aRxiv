@@ -10,12 +10,12 @@ if(on_cran) {
 options(aRxiv_delay=0.5)
 
 ## ----install_from_cran, eval=FALSE--------------------------------------------
-#  install.packages("aRxiv")
+# install.packages("aRxiv")
 
 ## ----install_pkgs, eval=FALSE-------------------------------------------------
-#  install.packages("remotes")
-#  library(remotes)
-#  install_github("ropensci/aRxiv")
+# install.packages("remotes")
+# library(remotes)
+# install_github("ropensci/aRxiv")
 
 ## ----arxiv_count--------------------------------------------------------------
 library(aRxiv)
@@ -40,7 +40,7 @@ nrow(deconv)
 deconv[, c('title', 'authors')]
 
 ## ----arxiv_open, eval=FALSE---------------------------------------------------
-#  arxiv_open(deconv)
+# arxiv_open(deconv)
 
 ## ----query_terms--------------------------------------------------------------
 query_terms
@@ -90,7 +90,7 @@ res <- arxiv_search('au:"Peter Hall" AND ti:deconvolution',
 res$updated
 
 ## ----aRxiv_delay, eval=FALSE--------------------------------------------------
-#  options(aRxiv_delay=1)
+# options(aRxiv_delay=1)
 
 ## ----reset_to_defaults, include=FALSE-----------------------------------------
 if(on_cran) {
