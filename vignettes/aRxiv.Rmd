@@ -23,6 +23,13 @@ if(on_cran) {
     aRxiv:::set_arxiv_timeout(1)
     aRxiv:::set_message_on_timeout(TRUE)
 }
+
+# if aRxiv connection is down, skip everything else
+# actually, for CRAN, just skip everything no matter what
+if(on_cran || !aRxiv::can_arxiv_connect(1)) {
+    library(aRxiv)
+    knitr::opts_chunk$set(eval=FALSE)
+}
 ```
 
 ```{r change_aRxiv_delay_option, include=FALSE}
@@ -92,8 +99,7 @@ is the same as what `arxiv_count()` provides.
 attr(rec, "total_results")
 ```
 
-The following will get us all `r arxiv_count('au:"Peter Hall"')`
-records.
+The following will get us all of the records.
 
 ```{r arxiv_search_limit100}
 rec <- arxiv_search('au:"Peter Hall"', limit=100)
@@ -121,7 +127,7 @@ Let's display just the authors and title for the results.
 deconv[, c('title', 'authors')]
 ```
 
-We can open the abstract pages for these `r nrow(deconv)` manuscripts
+We can open the abstract pages for these manuscripts
 using `arxiv_open()`. It takes, as input, the output of
 `arxiv_search()`.
 
@@ -210,34 +216,36 @@ arxiv_count('cat:stat*')
 
 ### Dates and ranges of dates
 
-The terms `submittedDate` (date/time of first submission) and
-`lastUpdatedDate` (date/time of last revision) are particularly
+The term `submittedDate` (date/time of first submission) is particularly
 useful for limiting a search with _many_ results, so that you may
 combine multiple searches together, each within some window of time,
-to get the full results.
+to get the full results. (There's also `lastUpdatedDate`, but it seems
+we can no longer search on that field.)
 
-The date/time information is of the form `YYYYMMDDHHMMSS`, for
-example `20071018122534` for `2007-10-18 12:25:34`. You can use `*`
-for a wildcard for the times. For example, to get all manuscripts
-with initial submission on 2007-10-18:
+The date/time information is of the form `YYYYMMDDHHMM`, for
+example `200710181225` for `2007-10-18 12:25`, but you need to provide
+ranges in square brackets, like `[20071018 TO 20071020]`.
+For example, to get all manuscripts with initial submission on 2007-10-18:
 
-```{r wildcard_times}
-arxiv_count('submittedDate:20071018*')
+```{r dates_range}
+arxiv_count('submittedDate:[200710180000 TO 200710182359]')
 ```
 
-But you can't use the wildcard within the _dates_.
+It seems like you can leave off the times:
 
-```{r wildcard_date}
-arxiv_count('submittedDate:2007*')
+```{r dates_range_notimes}
+arxiv_count('submittedDate:[20071018 TO 20071018]')
 ```
 
-To get a count of all manuscripts with original submission in 2007,
-use a date range, like `[from_date TO to_date]`. (If you give a partial
-date, it's treated as the earliest date/time that matches, and the
-range appears to be up to but not including the second date/time.)
+If you give a partial date, it's treated as the earliest date/time
+that matches for the beginning of the range, and the latest date/time
+that matches for the end of the range.
 
-```{r daterange}
+```{r date_range_2007}
+arxiv_count('submittedDate:[2007 TO 2007]')
+arxiv_count('submittedDate:[200701010000 TO 200712312359]')
 arxiv_count('submittedDate:[2007 TO 2008]')
+arxiv_count('submittedDate:[200701010000 TO 200812312359]')
 ```
 
 ## Search results
@@ -355,7 +363,7 @@ arXiv has a hard limit of around 50,000 records; for a query that
 matches more than 50,000 manuscripts, there is no way to receive the
 full results. The simplest solution to this problem is to break the
 query into smaller pieces, for example using slices of time, with a
-range of dates for `submittedDate` or `lastUpdatedDate`.
+range of dates for `submittedDate`.
 
 The `limit` argument to `arxiv_search()` (with default `limit=10`)
 limits the number of records to be returned. If you wish to receive

@@ -6,6 +6,13 @@ if(on_cran) {
     aRxiv:::set_message_on_timeout(TRUE)
 }
 
+# if aRxiv connection is down, skip everything else
+# actually, for CRAN, just skip everything no matter what
+if(on_cran || !aRxiv::can_arxiv_connect(1)) {
+    library(aRxiv)
+    knitr::opts_chunk$set(eval=FALSE)
+}
+
 ## ----change_aRxiv_delay_option, include=FALSE---------------------------------
 options(aRxiv_delay=0.5)
 
@@ -67,14 +74,17 @@ arxiv_count('cat:stat')
 arxiv_count('cat:stat.AP')
 arxiv_count('cat:stat*')
 
-## ----wildcard_times-----------------------------------------------------------
-arxiv_count('submittedDate:20071018*')
+## ----dates_range--------------------------------------------------------------
+arxiv_count('submittedDate:[200710180000 TO 200710182359]')
 
-## ----wildcard_date------------------------------------------------------------
-arxiv_count('submittedDate:2007*')
+## ----dates_range_notimes------------------------------------------------------
+arxiv_count('submittedDate:[20071018 TO 20071018]')
 
-## ----daterange----------------------------------------------------------------
+## ----date_range_2007----------------------------------------------------------
+arxiv_count('submittedDate:[2007 TO 2007]')
+arxiv_count('submittedDate:[200701010000 TO 200712312359]')
 arxiv_count('submittedDate:[2007 TO 2008]')
+arxiv_count('submittedDate:[200701010000 TO 200812312359]')
 
 ## ----arxiv_search_result------------------------------------------------------
 res <- arxiv_search('au:"Peter Hall"')

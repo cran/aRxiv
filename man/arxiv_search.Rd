@@ -26,7 +26,7 @@ of such strings}
 
 \item{start}{An offset for the start of search}
 
-\item{limit}{Maximum number of records to return.}
+\item{limit}{Maximum number of records to return (must be > 0).}
 
 \item{sort_by}{How to sort the results (ignored if \code{id_list} is
 provided)}
@@ -103,7 +103,7 @@ z <- arxiv_search(id_list = "0710.3491v1,0804.0713v1,1003.0315v1")
 z$journal_ref
 
 # search for a range of dates (in this case, one day)
-z <- arxiv_search("submittedDate:[199701010000 TO 199701012400]", limit=2)
+z <- arxiv_search("submittedDate:[199701010000 TO 199701012359]", limit=2)
 }
 \dontshow{options(aRxiv_delay=old_delay)}
 
