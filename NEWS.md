@@ -1,3 +1,17 @@
+aRxiv 0.16
+----------
+
+### BUG FIXES
+
+* Got `clean_links()` working again, so abstract, pdf and doi links
+  are included in the search results. [Issue #68]
+
+* Capture result that looks blank but contains the error "Rate exceeded."
+  [Issue #66]
+
+* `sort_by` in `arxiv_search()` is working again. [Issue #70]
+
+
 aRxiv 0.14
 ----------
 
