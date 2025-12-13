@@ -1,3 +1,13 @@
+aRxiv 0.18
+----------
+
+### MINOR CHANGES
+
+* Avoid running examples on CRAN, to avoid `R CMD check` failures.
+  They're already in `\donttest{ }`, but now also put them within
+  `if(interactive()) { }`.
+
+
 aRxiv 0.16
 ----------
 

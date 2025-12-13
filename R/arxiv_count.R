@@ -19,16 +19,17 @@
 #' \dontshow{old_delay <- getOption("aRxiv_delay")
 #'           options(aRxiv_delay=1)}
 #' \donttest{
-#' # count papers in category stat.AP (applied statistics)
-#' arxiv_count(query = "cat:stat.AP")
+#' if(interactive()) {
+#'     # count papers in category stat.AP (applied statistics)
+#'     arxiv_count(query = "cat:stat.AP")
 #'
-#' # count papers by Peter Hall in any stat category
-#' arxiv_count(query = 'au:"Peter Hall" AND cat:stat*')
+#'     # count papers by Peter Hall in any stat category
+#'     arxiv_count(query = 'au:"Peter Hall" AND cat:stat*')
 #'
-#' # count papers for a range of dates
-#' #    here, everything in 2013
-#' arxiv_count("submittedDate:[2013 TO 2013]")
-#' }
+#'     # count papers for a range of dates
+#'     #    here, everything in 2013
+#'     arxiv_count("submittedDate:[2013 TO 2013]")
+#' } }
 #' \dontshow{options(aRxiv_delay=old_delay)}
 #'
 #' @export
