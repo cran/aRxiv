@@ -3,6 +3,7 @@
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](
 https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/aRxiv)](https://cran.r-project.org/package=aRxiv)
+[![r-universe badge](https://ropensci.r-universe.dev/aRxiv/badges/version)](https://ropensci.r-universe.dev/aRxiv)
 
 ## R interface to arXiv
 
@@ -10,7 +11,7 @@ https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org
 computer science, mathematics, physics, quantitative biology,
 quantitative finance, and statistics. The
 [aRxiv](https://github.com/ropensci/aRxiv) package is an R interface to
-the [arXiv API](https://arxiv.org/help/api/index.html).
+the [arXiv API](https://info.arxiv.org/help/api/index.html).
 
 Note that the arXiv API _does not_ require an API key.
 
@@ -32,8 +33,16 @@ install.packages("aRxiv")
 
 __Development Version__
 
-Or use `remotes::install_github()` to get the (more recent) version
-at [GitHub](https://github.com/rOpenSci/aRxiv):
+Or get the most recent version from [R
+universe](https://ropensci.r-universe.dev):
+
+```r
+install.packages("aRxiv", repos=c("https://ropensci.r-universe.dev",
+                                  "https://cloud.r-project.org"))
+```
+
+Or use `remotes::install_github()` to install it from
+[GitHub](https://github.com/rOpenSci/aRxiv):
 
 ```r
 install.packages("remotes")
@@ -67,11 +76,11 @@ vignette("aRxiv", "aRxiv")
 ### Links
 
 * [arXiv](https://arxiv.org)
-* [arXiv API](https://arxiv.org/help/api/index.html)
-* [arXiv API user manual](https://arxiv.org/help/api/user-manual.html)
-* [Bulk data access to arXiv](https://arxiv.org/help/bulk_data)
-* [Bulk data access to arXiv metadata via OAI-PMH](https://arxiv.org/help/oa/index.html)
-* [Bulk data access to arXiv PDFs and source docs](https://arxiv.org/help/bulk_data_s3.html)
+* [arXiv API](https://info.arxiv.org/help/api/index.html)
+* [arXiv API user manual](https://info.arxiv.org/help/api/user-manual.html)
+* [Bulk data access to arXiv](https://info.arxiv.org/help/bulk_data/index.html)
+* [Bulk data access to arXiv metadata via OAI-PMH](https://info.arxiv.org/help/oa/index.html)
+* [Bulk data access to arXiv PDFs and source docs](https://info.arxiv.org/help/bulk_data_s3.html)
 
 
 ### License

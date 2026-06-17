@@ -14,12 +14,16 @@ if(on_cran || !aRxiv::can_arxiv_connect(1)) {
 }
 
 ## ----change_aRxiv_delay_option, include=FALSE---------------------------------
-options(aRxiv_delay=0.5)
+options(aRxiv_delay=3)
 
 ## ----install_from_cran, eval=FALSE--------------------------------------------
 # install.packages("aRxiv")
 
-## ----install_pkgs, eval=FALSE-------------------------------------------------
+## ----install_from_runiverse, eval=FALSE---------------------------------------
+# install.packages("aRxiv", repos=c("https://ropensci.r-universe.dev",
+#                                   "https://cloud.r-project.org"))
+
+## ----install_from_github, eval=FALSE------------------------------------------
 # install.packages("remotes")
 # library(remotes)
 # install_github("ropensci/aRxiv")

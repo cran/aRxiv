@@ -7,12 +7,21 @@ vignette: >
   \usepackage[utf8](inputenc)
 ---
 
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](
+https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/aRxiv)](https://cran.r-project.org/package=aRxiv)
+[![r-universe badge](https://ropensci.r-universe.dev/aRxiv/badges/version)](https://ropensci.r-universe.dev/aRxiv)
+
+[![R-CMD-check](https://github.com/ropensci/aRxiv/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/aRxiv/actions/workflows/R-CMD-check.yaml)
+[![codecov](https://codecov.io/gh/ropensci/aRxiv/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ropensci/aRxiv)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/aRxiv?color=blue)](https://github.com/r-hub/cranlogs.app)
+
 [arXiv](https://arxiv.org) is a repository of electronic preprints for
 computer science, mathematics, physics, quantitative biology,
 quantitative finance, and statistics. The
 [aRxiv package](https://github.com/ropensci/aRxiv) provides an
 [R](https://www.r-project.org) interface to the
-[arXiv API](https://arxiv.org/help/api/index.html).
+[arXiv API](https://info.arxiv.org/help/api/index.html).
 
 Note that the arXiv API _does not_ require an API key.
 
@@ -33,7 +42,7 @@ if(on_cran || !aRxiv::can_arxiv_connect(1)) {
 ```
 
 ```{r change_aRxiv_delay_option, include=FALSE}
-options(aRxiv_delay=0.5)
+options(aRxiv_delay=3)
 ```
 
 ## Installation
@@ -45,10 +54,18 @@ via [CRAN](https://cran.r-project.org):
 install.packages("aRxiv")
 ```
 
-Or use `remotes::install_github()` to get the (possibly more recent) version
-at [GitHub](https://github.com/rOpenSci/aRxiv):
+Or get the most recent version from [R
+universe](https://ropensci.r-universe.dev):
 
-```{r install_pkgs, eval=FALSE}
+```{r, install_from_runiverse, eval=FALSE}
+install.packages("aRxiv", repos=c("https://ropensci.r-universe.dev",
+                                  "https://cloud.r-project.org"))
+```
+
+Or use `remotes::install_github()` to install it from
+[GitHub](https://github.com/rOpenSci/aRxiv):
+
+```{r, install_from_github, eval=FALSE}
 install.packages("remotes")
 library(remotes)
 install_github("ropensci/aRxiv")
@@ -141,7 +158,7 @@ arxiv_open(deconv)
 The two basic arguments to `arxiv_count()` and `arxiv_search()` are
 `query`, a
 character string representing the search, and `id_list`, a list of
-[arXiv manuscript identifiers](https://arxiv.org/help/arxiv_identifier.html).
+[arXiv manuscript identifiers](https://info.arxiv.org/help/arxiv_identifier.html).
 
 - If only `query` is provided, manuscripts matching that query are
   returned.
@@ -303,7 +320,7 @@ res$updated
 
 ### Metadata limitations
 
-The [arXiv metadata](https://arxiv.org/help/prep.html) has a number of
+The [arXiv metadata](https://info.arxiv.org/help/prep.html) has a number of
 limitations, the key issue being that it is author-supplied and so not
 necessarily consistent between records.
 
@@ -315,7 +332,7 @@ distinguish multiple individuals with the same name (c.f.,
 Authors' institutional affiliations are mostly missing.  The arXiv
 submission form does not include an affiliation field; affiliations
 are entered within the author field, in parentheses.  The
-[metadata instructions](https://arxiv.org/help/prep.html#author) may not be
+[metadata instructions](https://info.arxiv.org/help/prep.html#author) may not be
 widely read.
 
 There are no key words; you are stuck with searching the free text in
@@ -329,7 +346,7 @@ incomplete or inappropriate.
 
 Care should be taken to avoid multiple requests to the arXiv API in a
 short period of time. The
-[arXiv API user manual](https://arxiv.org/help/api/user-manual.html) states:
+[arXiv API user manual](https://info.arxiv.org/help/api/user-manual.html) states:
 
 > In cases where the API needs to be called multiple times in a row,
 > we encourage you to play nice and incorporate a 3 second delay in
